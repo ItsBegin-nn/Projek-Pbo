@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             textBox1 = new TextBox();
             TBuser = new TextBox();
-            button1 = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -51,22 +50,12 @@
             TBuser.TabIndex = 1;
             TBuser.TextChanged += TBuser_TextChanged;
             // 
-            // button1
-            // 
-            button1.Location = new Point(660, 141);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1083, 613);
-            Controls.Add(button1);
             Controls.Add(TBuser);
             Controls.Add(textBox1);
             Name = "Login";
@@ -80,6 +69,5 @@
 
         private TextBox textBox1;
         private TextBox TBuser;
-        private Button button1;
     }
 }
