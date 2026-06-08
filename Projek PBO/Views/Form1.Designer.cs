@@ -1,6 +1,6 @@
 ﻿namespace Projek_PBO
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,12 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            textBox1 = new TextBox();
+            TBuser = new TextBox();
+            SuspendLayout();
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(167, 481);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(258, 34);
+            textBox1.TabIndex = 0;
+            // 
+            // TBuser
+            // 
+            TBuser.Location = new Point(167, 379);
+            TBuser.Multiline = true;
+            TBuser.Name = "TBuser";
+            TBuser.Size = new Size(258, 34);
+            TBuser.TabIndex = 1;
+            TBuser.TextChanged += TBuser_TextChanged;
+            // 
+            // Login
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Text = "Form1";
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1083, 613);
+            Controls.Add(TBuser);
+            Controls.Add(textBox1);
+            Name = "Login";
+            Text = "BuahKita";
+            Load += Login_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox textBox1;
+        private TextBox TBuser;
     }
 }
