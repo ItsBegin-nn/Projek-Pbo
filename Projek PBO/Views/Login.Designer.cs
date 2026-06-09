@@ -28,25 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            textBox1 = new TextBox();
+            TBpass = new TextBox();
+            BTN = new Button();
             TBuser = new TextBox();
             SuspendLayout();
             // 
-            // textBox1
+            // TBpass
             // 
-            textBox1.Location = new Point(167, 481);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(258, 34);
-            textBox1.TabIndex = 0;
+            TBpass.Location = new Point(240, 460);
+            TBpass.Multiline = true;
+            TBpass.Name = "TBpass";
+            TBpass.Size = new Size(288, 34);
+            TBpass.TabIndex = 0;
+            // 
+            // BTN
+            // 
+            BTN.BackColor = Color.OliveDrab;
+            BTN.Location = new Point(334, 550);
+            BTN.Name = "BTN";
+            BTN.Size = new Size(113, 44);
+            BTN.TabIndex = 2;
+            BTN.Text = "LOGIN";
+            BTN.UseVisualStyleBackColor = false;
+            BTN.Click += button1_Click;
             // 
             // TBuser
             // 
-            TBuser.Location = new Point(167, 379);
+            TBuser.Anchor = AnchorStyles.None;
+            TBuser.Location = new Point(240, 363);
             TBuser.Multiline = true;
             TBuser.Name = "TBuser";
-            TBuser.Size = new Size(258, 34);
+            TBuser.Size = new Size(288, 34);
             TBuser.TabIndex = 1;
             TBuser.TextChanged += TBuser_TextChanged;
             // 
@@ -54,10 +66,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1083, 613);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1103, 670);
+            Controls.Add(BTN);
             Controls.Add(TBuser);
-            Controls.Add(textBox1);
+            Controls.Add(TBpass);
             Name = "Login";
             Text = "BuahKita";
             Load += Login_Load;
@@ -67,7 +80,8 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox TBpass;
+        private Button BTN;
         private TextBox TBuser;
     }
 }
