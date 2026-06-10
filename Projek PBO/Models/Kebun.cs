@@ -3,13 +3,16 @@ using System.Collections.Generic;
 
 namespace Projek_PBO.Models;
 
+
+//===========================
+// 1. ENKAPSULASI : PRIVATE FIELDS
 public partial class Kebun
 {
-    public int IdKebun { get; set; }
+    public int IdKebun {  get; set; }
 
-    public string NamaKebun { get; set; } = null!;
+    public string NamaKebun { get; set; }
 
-    public string? Lokasi { get; set; }
+    public string? Lokasi {  get; set; }
 
     public decimal? Luas { get; set; }
 

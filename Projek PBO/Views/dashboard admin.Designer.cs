@@ -29,20 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard_admin));
+            BtnDasbor = new Button();
             SuspendLayout();
+            // 
+            // BtnDasbor
+            // 
+            BtnDasbor.BackColor = Color.Transparent;
+            BtnDasbor.BackgroundImage = Properties.Resources.Dasbor;
+            BtnDasbor.BackgroundImageLayout = ImageLayout.None;
+            BtnDasbor.ForeColor = Color.Red;
+            BtnDasbor.Location = new Point(12, 107);
+            BtnDasbor.Name = "BtnDasbor";
+            BtnDasbor.Size = new Size(94, 34);
+            BtnDasbor.TabIndex = 0;
+            BtnDasbor.Text = "Dasbor";
+            BtnDasbor.TextAlign = ContentAlignment.MiddleLeft;
+            BtnDasbor.UseVisualStyleBackColor = false;
+            BtnDasbor.Click += button1_Click;
             // 
             // dashboard_admin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Zoom;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(941, 527);
+            Controls.Add(BtnDasbor);
             Name = "dashboard_admin";
             Text = "dashboard_admin";
+            Load += dashboard_admin_Load;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button BtnDasbor;
     }
 }

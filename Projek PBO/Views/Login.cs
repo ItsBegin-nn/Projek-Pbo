@@ -13,9 +13,6 @@ namespace Projek_PBO
             username = "admin123";
             password = "admin123";
             TBpass.UseSystemPasswordChar = true;
-
-            //this.Resize += Login_Resize;
-            //CenterPanel();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -55,6 +52,10 @@ namespace Projek_PBO
                 MessageBox.Show("salah pass ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
+        private void TBpass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
