@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Projek_PBO.Views
 {
-    public partial class dashboard_admin : Form
+    public partial class dashboard_petani : Form
     {
-        public dashboard_admin()
+        public dashboard_petani()
         {
             InitializeComponent();
 
