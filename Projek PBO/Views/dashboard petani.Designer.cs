@@ -162,7 +162,7 @@
             Font = new Font("Poppins", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Margin = new Padding(3, 4, 3, 4);
             Name = "dashboard_petani";
-            Text = "dashboard_admin";
+            Text = "dashboard_petani";
             Load += dashboard_admin_Load;
             ResumeLayout(false);
         }

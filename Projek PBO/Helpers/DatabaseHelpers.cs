@@ -98,6 +98,7 @@ public partial class DatabaseHelpers : DbContext
             entity.HasOne(d => d.IdPetaniNavigation).WithMany(p => p.Panens)
                 .HasForeignKey(d => d.IdPetani)
                 .HasConstraintName("fk_panen_petani");
+
         });
 
         modelBuilder.Entity<Pengguna>(entity =>
@@ -109,18 +110,20 @@ public partial class DatabaseHelpers : DbContext
             entity.HasIndex(e => e.Username, "pengguna_username_key").IsUnique();
 
             entity.Property(e => e.IdPengguna).HasColumnName("id_pengguna");
-            entity.Property(e => e.NamaLengkap)
-                .HasMaxLength(100)
-                .HasColumnName("nama_lengkap");
-            entity.Property(e => e.Password)
+            entity.Property(e => e.Username)        
+                   .HasMaxLength(50)
+                   .HasColumnName("username");
+            entity.Property(e => e.Password)        
                 .HasMaxLength(255)
                 .HasColumnName("password");
             entity.Property(e => e.Role)
                 .HasMaxLength(20)
                 .HasColumnName("role");
-            entity.Property(e => e.Username)
-                .HasMaxLength(50)
-                .HasColumnName("username");
+            entity.Property(e => e.NamaLengkap)
+                .HasMaxLength(100)
+                .HasColumnName("nama_lengkap");
+
+
         });
 
         modelBuilder.Entity<Penjualan>(entity =>

@@ -1,3 +1,4 @@
+using Projek_PBO.Controllers;
 using Projek_PBO.Views;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -5,14 +6,12 @@ namespace Projek_PBO
 {
     public partial class Login : Form
     {
-        private string username;
-        private string password;
+        private readonly AuthController _authController;
         public Login()
         {
             InitializeComponent();
-            username = "admin123";
-            password = "admin123";
             TBpass.UseSystemPasswordChar = true;
+            _authController = new AuthController();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -37,22 +36,40 @@ namespace Projek_PBO
 
             if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
             {
-                MessageBox.Show("Boss Masukan user sama passnya ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Masukkan username dan password!", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            if (user == username && pass == password)
+            try
             {
-                MessageBox.Show("Silahkan Masuk Admin", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dashboard_admin DbAdmin1 = new dashboard_admin();
-                DbAdmin1.Show();
-                this.Hide();
+                // ↓ bagian yang tadi
+                var pengguna = _authController.Login(user, pass);
+
+                if (pengguna == null)
+                {
+                    MessageBox.Show("Username atau password salah!", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (pengguna.IsAdmin())
+                {
+                    new dashboard_admin().Show();
+                    this.Hide();
+                }
+                else if (pengguna.IsPetani())
+                {
+                    new dashboard_petani().Show();
+                    this.Hide();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("salah pass ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Gagal konek database: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void TBpass_TextChanged(object sender, EventArgs e)
         {
 
