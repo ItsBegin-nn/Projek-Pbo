@@ -44,7 +44,7 @@
             BtnDasbor.FlatAppearance.BorderSize = 0;
             BtnDasbor.FlatStyle = FlatStyle.Flat;
             BtnDasbor.ForeColor = Color.Black;
-            BtnDasbor.Location = new Point(8, 165);
+            BtnDasbor.Location = new Point(7, 165);
             BtnDasbor.Name = "BtnDasbor";
             BtnDasbor.Padding = new Padding(10, 0, 0, 0);
             BtnDasbor.Size = new Size(159, 44);
@@ -68,6 +68,7 @@
             BtnKelolaUser.Text = "Kelola Pengguna";
             BtnKelolaUser.TextAlign = ContentAlignment.MiddleLeft;
             BtnKelolaUser.UseVisualStyleBackColor = false;
+            BtnKelolaUser.Click += BtnKelolaUser_Click;
             // 
             // BtnKelolaBuah
             // 
@@ -83,6 +84,8 @@
             BtnKelolaBuah.Text = "Kelola Buah";
             BtnKelolaBuah.TextAlign = ContentAlignment.MiddleLeft;
             BtnKelolaBuah.UseVisualStyleBackColor = false;
+            BtnKelolaBuah.Click += BtnKelolaBuah_Click;
+
             // 
             // BtnKelolaPenjualan
             // 
@@ -98,6 +101,8 @@
             BtnKelolaPenjualan.Text = "Kelola Penjualan";
             BtnKelolaPenjualan.TextAlign = ContentAlignment.MiddleLeft;
             BtnKelolaPenjualan.UseVisualStyleBackColor = false;
+            BtnKelolaPenjualan.Click += BtnKelolaPenjualan_Click;
+
             // 
             // BtnKelolaKebun
             // 
@@ -113,6 +118,8 @@
             BtnKelolaKebun.Text = "Kelola Kebun";
             BtnKelolaKebun.TextAlign = ContentAlignment.MiddleLeft;
             BtnKelolaKebun.UseVisualStyleBackColor = false;
+            BtnKelolaKebun.Click += BtnKelolaKebun_Click;
+
             // 
             // BtnLihatPanen
             // 
@@ -128,6 +135,8 @@
             BtnLihatPanen.Text = "Lihat Panen";
             BtnLihatPanen.TextAlign = ContentAlignment.MiddleLeft;
             BtnLihatPanen.UseVisualStyleBackColor = false;
+            BtnLihatPanen.Click += BtnLihatPanen_Click;
+
             // 
             // BtnLogout
             // 

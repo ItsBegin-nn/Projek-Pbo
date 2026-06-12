@@ -24,6 +24,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\Kelola Pengguna.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\dashboard petani.cs">
       <SubType>Form</SubType>
     </Compile>
