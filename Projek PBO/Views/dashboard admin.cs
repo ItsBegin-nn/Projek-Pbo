@@ -72,59 +72,50 @@ namespace Projek_PBO.Views
             tombolAktif.Region = new Region(GetRoundedRect(tombolAktif.ClientRectangle, 20));
         }
 
-        protected void button1_Click(object sender, EventArgs e)
-        {
-            panelKonten.Controls.Clear();
-            AktifkanTombol(BtnDasbor);
-        }
-
-        protected void MuatKonten(UserControl konten, Button tombolAktif)
+        protected void MuatKonten(BaseUserControl konten, Button tombolAktif)
         {
             panelKonten.Controls.Clear();
             konten.Dock = DockStyle.Fill;
+            konten.MuatData(); // POLYMORPHISM
             panelKonten.Controls.Add(konten);
             AktifkanTombol(tombolAktif);
         }
 
         protected void BtnKelolaUser_Click(object sender, EventArgs e)
         {
-            MuatKonten(new KelolaPengguna(), BtnKelolaUser);
+            MuatKonten(new KelolaPengguna(NamaPengguna), BtnKelolaUser);
         }
 
         protected void BtnKelolaBuah_Click(object sender, EventArgs e)
         {
-            MuatKonten(new KelolaBuah(), BtnKelolaBuah);
+            MuatKonten(new KelolaBuah(NamaPengguna), BtnKelolaBuah);
         }
 
         protected void BtnKelolaPenjualan_Click(object sender, EventArgs e)
         {
-            MuatKonten(new KelolaPenjualan(), BtnKelolaPenjualan);
+            MuatKonten(new KelolaPenjualan(NamaPengguna), BtnKelolaPenjualan);
         }
 
         protected void BtnKelolaKebun_Click(object sender, EventArgs e)
         {
-            MuatKonten(new KelolaKebun(), BtnKelolaKebun);
+            MuatKonten(new KelolaKebun(NamaPengguna), BtnKelolaKebun);
         }
 
         protected void BtnLihatPanen_Click(object sender, EventArgs e)
         {
-            MuatKonten(new LihatPanen(), BtnLihatPanen);
+            MuatKonten(new LihatPanen(NamaPengguna), BtnLihatPanen);
+        }
+
+        protected void button1_Click(object sender, EventArgs e)
+        {
+            panelKonten.Controls.Clear();
+            AktifkanTombol(BtnDasbor);
         }
 
         protected void BtnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
             new Login().Show();
-        }
-        protected void SembunyikanSidebar()
-        {
-            BtnDasbor.Visible = false;
-            BtnKelolaUser.Visible = false;
-            BtnKelolaBuah.Visible = false;
-            BtnKelolaPenjualan.Visible = false;
-            BtnKelolaKebun.Visible = false;
-            BtnLihatPanen.Visible = false;
-            BtnLogout.Visible = false;
         }
     }
 }

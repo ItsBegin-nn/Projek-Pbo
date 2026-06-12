@@ -1,6 +1,6 @@
 ﻿namespace Projek_PBO.Views
 {
-    partial class KelolaKebun
+    partial class KelolaPenjualan
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -16,7 +16,7 @@
             this.SuspendLayout();
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "KelolaPengguna";
+            this.Name = "KelolaPenjualan";
             this.Size = new System.Drawing.Size(884, 685);
             this.ResumeLayout(false);
         }
