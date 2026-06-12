@@ -68,6 +68,8 @@
             BtnBuken.Text = "Buah Dan Kebun";
             BtnBuken.TextAlign = ContentAlignment.MiddleLeft;
             BtnBuken.UseVisualStyleBackColor = false;
+            BtnBuken.Click += BtnBuken_Click;
+
             // 
             // BtnInPan
             // 
@@ -83,6 +85,8 @@
             BtnInPan.Text = "Input Panen";
             BtnInPan.TextAlign = ContentAlignment.MiddleLeft;
             BtnInPan.UseVisualStyleBackColor = false;
+            BtnInPan.Click += BtnInPan_Click;
+
             // 
             // BtnBapan
             // 
@@ -98,6 +102,8 @@
             BtnBapan.Text = "Ubah Panen";
             BtnBapan.TextAlign = ContentAlignment.MiddleLeft;
             BtnBapan.UseVisualStyleBackColor = false;
+            BtnBapan.Click += BtnBapan_Click;
+
             // 
             // BtnHapen
             // 
@@ -113,6 +119,8 @@
             BtnHapen.Text = "Hapus Panen";
             BtnHapen.TextAlign = ContentAlignment.MiddleLeft;
             BtnHapen.UseVisualStyleBackColor = false;
+            BtnHapen.Click += BtnHapen_Click;
+
             // 
             // BtnRipen
             // 
@@ -128,6 +136,8 @@
             BtnRipen.Text = "Riwayat Penjualan";
             BtnRipen.TextAlign = ContentAlignment.MiddleLeft;
             BtnRipen.UseVisualStyleBackColor = false;
+            BtnRipen.Click += BtnRipen_Click;
+
             // 
             // BtnLogout
             // 
