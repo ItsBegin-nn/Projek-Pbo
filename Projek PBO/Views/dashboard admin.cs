@@ -14,7 +14,6 @@ namespace Projek_PBO.Views
         {
             InitializeComponent();
 
-            // pindah dari Load ke sini
             panelKonten = new Panel
             {
                 Location = new Point(175, 0),
@@ -29,7 +28,6 @@ namespace Projek_PBO.Views
         {
             NamaPengguna = namaPengguna;
 
-            // muat DasborAdmin saat pertama login
             MuatKonten(new DasborAdmin(NamaPengguna), BtnDasbor);
         }
 

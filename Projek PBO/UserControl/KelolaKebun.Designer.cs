@@ -21,6 +21,8 @@
             LbLuas = new Label();
             BtnSimpan = new Button();
             BtnHapus = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // LbNama
@@ -85,26 +87,42 @@
             // 
             // BtnSimpan
             // 
+            BtnSimpan.BackColor = Color.Chartreuse;
+            BtnSimpan.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnSimpan.ForeColor = Color.Red;
             BtnSimpan.Location = new Point(637, 268);
             BtnSimpan.Name = "BtnSimpan";
             BtnSimpan.Size = new Size(94, 29);
             BtnSimpan.TabIndex = 6;
             BtnSimpan.Text = "Simpan";
-            BtnSimpan.UseVisualStyleBackColor = true;
+            BtnSimpan.UseVisualStyleBackColor = false;
             // 
             // BtnHapus
             // 
+            BtnHapus.BackColor = Color.Red;
+            BtnHapus.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnHapus.ForeColor = Color.Chartreuse;
             BtnHapus.Location = new Point(518, 268);
             BtnHapus.Name = "BtnHapus";
             BtnHapus.Size = new Size(94, 29);
             BtnHapus.TabIndex = 7;
             BtnHapus.Text = "Hapus";
-            BtnHapus.UseVisualStyleBackColor = true;
+            BtnHapus.UseVisualStyleBackColor = false;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(16, 315);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(829, 351);
+            dataGridView1.TabIndex = 8;
             // 
             // KelolaKebun
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(dataGridView1);
             Controls.Add(BtnHapus);
             Controls.Add(BtnSimpan);
             Controls.Add(LbLuas);
@@ -114,6 +132,8 @@
             Controls.Add(TbNama);
             Controls.Add(LbNama);
             Name = "KelolaKebun";
+            Size = new Size(866, 681);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -126,5 +146,6 @@
         private Label LbLuas;
         private Button BtnSimpan;
         private Button BtnHapus;
+        private DataGridView dataGridView1;
     }
 }
