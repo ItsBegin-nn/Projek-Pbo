@@ -13,11 +13,48 @@ namespace Projek_PBO.Views
         public dashboard_admin()
         {
             InitializeComponent();
+
+            // pindah dari Load ke sini
+            panelKonten = new Panel
+            {
+                Location = new Point(175, 0),
+                Size = new Size(this.ClientSize.Width - 175, this.ClientSize.Height),
+                BackColor = Color.Transparent
+            };
+            this.Controls.Add(panelKonten);
+            panelKonten.BringToFront();
         }
 
         public dashboard_admin(string namaPengguna) : this()
         {
             NamaPengguna = namaPengguna;
+
+            // muat DasborAdmin saat pertama login
+            MuatKonten(new DasborAdmin(NamaPengguna), BtnDasbor);
+        }
+
+        protected void dashboard_admin_Load(object sender, EventArgs e)
+        {
+            AktifkanTombol(BtnDasbor);
+        }
+
+        public virtual void MuatData() { }
+        public virtual string GetJudulForm() => "Dashboard Admin";
+
+        private void AktifkanTombol(Button tombolAktif)
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c is Button btn)
+                {
+                    btn.BackColor = Color.Transparent;
+                    btn.ForeColor = Color.White;
+                    btn.Region = null;
+                }
+            }
+            tombolAktif.BackColor = Color.White;
+            tombolAktif.ForeColor = Color.Black;
+            tombolAktif.Region = new Region(GetRoundedRect(tombolAktif.ClientRectangle, 20));
         }
 
         protected GraphicsPath GetRoundedRect(Rectangle rect, int radius)
@@ -31,54 +68,19 @@ namespace Projek_PBO.Views
             return path;
         }
 
-        protected void dashboard_admin_Load(object sender, EventArgs e)
-        {
-            // buat panel konten secara kode
-            panelKonten = new Panel
-            {
-                Location = new Point(175, 0),
-                Size = new Size(this.ClientSize.Width - 175, this.ClientSize.Height),
-                BackColor = Color.Transparent
-            };
-            this.Controls.Add(panelKonten);
-            panelKonten.BringToFront();
-
-            AktifkanTombol(BtnDasbor);
-        }
-
-        // ============================
-        // POLYMORPHISM
-        // ============================
-        public virtual void MuatData() { }
-        public virtual string GetJudulForm() => "Dashboard Admin";
-
-
-        private void AktifkanTombol(Button tombolAktif)
-        {
-            // reset semua tombol
-            foreach (Control c in this.Controls)
-            {
-                if (c is Button btn)
-                {
-                    btn.BackColor = Color.Transparent;
-                    btn.ForeColor = Color.White;
-                    btn.Region = null;
-                }
-            }
-
-            // aktifkan tombol yang dipilih
-            tombolAktif.BackColor = Color.White;
-            tombolAktif.ForeColor = Color.Black;
-            tombolAktif.Region = new Region(GetRoundedRect(tombolAktif.ClientRectangle, 20));
-        }
-
         protected void MuatKonten(BaseUserControl konten, Button tombolAktif)
         {
             panelKonten.Controls.Clear();
             konten.Dock = DockStyle.Fill;
-            konten.MuatData(); // POLYMORPHISM
+            konten.MuatData();
             panelKonten.Controls.Add(konten);
             AktifkanTombol(tombolAktif);
+        }
+
+        protected void button1_Click(object sender, EventArgs e)
+        {
+            // kembali ke DasborAdmin
+            MuatKonten(new DasborAdmin(NamaPengguna), BtnDasbor);
         }
 
         protected void BtnKelolaUser_Click(object sender, EventArgs e)
@@ -104,12 +106,6 @@ namespace Projek_PBO.Views
         protected void BtnLihatPanen_Click(object sender, EventArgs e)
         {
             MuatKonten(new LihatPanen(NamaPengguna), BtnLihatPanen);
-        }
-
-        protected void button1_Click(object sender, EventArgs e)
-        {
-            panelKonten.Controls.Clear();
-            AktifkanTombol(BtnDasbor);
         }
 
         protected void BtnLogout_Click(object sender, EventArgs e)

@@ -13,12 +13,33 @@ namespace Projek_PBO.Views
         public dashboard_petani()
         {
             InitializeComponent();
+
+            // pindah dari Load ke sini
+            panelKonten = new Panel
+            {
+                Location = new Point(175, 0),
+                Size = new Size(this.ClientSize.Width - 175, this.ClientSize.Height),
+                BackColor = Color.Transparent
+            };
+            this.Controls.Add(panelKonten);
+            panelKonten.BringToFront();
         }
 
         public dashboard_petani(string namaPengguna) : this()
         {
             NamaPengguna = namaPengguna;
+
+            // muat DasborPetani saat pertama login
+            MuatKonten(new DasborPetani(NamaPengguna), BtnDasbor);
         }
+
+        protected void dashboard_admin_Load(object sender, EventArgs e)
+        {
+            AktifkanTombol(BtnDasbor);
+        }
+
+        public virtual void MuatData() { }
+        public virtual string GetJudulForm() => "Dashboard Petani";
 
         protected GraphicsPath GetRoundedRect(Rectangle rect, int radius)
         {
@@ -30,22 +51,6 @@ namespace Projek_PBO.Views
             path.CloseFigure();
             return path;
         }
-
-        protected void dashboard_admin_Load(object sender, EventArgs e)
-        {
-            panelKonten = new Panel
-            {
-                Location = new Point(175, 0),
-                Size = new Size(this.ClientSize.Width - 175, this.ClientSize.Height),
-                BackColor = Color.Transparent
-            };
-            this.Controls.Add(panelKonten);
-            panelKonten.BringToFront();
-            AktifkanTombol(BtnDasbor);
-        }
-
-        public virtual void MuatData() { }
-        public virtual string GetJudulForm() => "Dashboard Petani";
 
         protected void MuatKonten(BaseUserControl konten, Button tombolAktif)
         {
@@ -74,8 +79,7 @@ namespace Projek_PBO.Views
 
         protected void button1_Click(object sender, EventArgs e)
         {
-            panelKonten.Controls.Clear();
-            AktifkanTombol(BtnDasbor);
+            MuatKonten(new DasborPetani(NamaPengguna), BtnDasbor);
         }
 
         protected void BtnBuken_Click(object sender, EventArgs e)

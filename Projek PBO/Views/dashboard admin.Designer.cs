@@ -85,7 +85,6 @@
             BtnKelolaBuah.TextAlign = ContentAlignment.MiddleLeft;
             BtnKelolaBuah.UseVisualStyleBackColor = false;
             BtnKelolaBuah.Click += BtnKelolaBuah_Click;
-
             // 
             // BtnKelolaPenjualan
             // 
@@ -102,7 +101,6 @@
             BtnKelolaPenjualan.TextAlign = ContentAlignment.MiddleLeft;
             BtnKelolaPenjualan.UseVisualStyleBackColor = false;
             BtnKelolaPenjualan.Click += BtnKelolaPenjualan_Click;
-
             // 
             // BtnKelolaKebun
             // 
@@ -119,7 +117,6 @@
             BtnKelolaKebun.TextAlign = ContentAlignment.MiddleLeft;
             BtnKelolaKebun.UseVisualStyleBackColor = false;
             BtnKelolaKebun.Click += BtnKelolaKebun_Click;
-
             // 
             // BtnLihatPanen
             // 
@@ -136,7 +133,6 @@
             BtnLihatPanen.TextAlign = ContentAlignment.MiddleLeft;
             BtnLihatPanen.UseVisualStyleBackColor = false;
             BtnLihatPanen.Click += BtnLihatPanen_Click;
-
             // 
             // BtnLogout
             // 
