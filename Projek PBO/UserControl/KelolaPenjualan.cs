@@ -8,7 +8,7 @@ namespace Projek_PBO.Views
     public partial class KelolaPenjualan : BaseUserControl
     {
         private readonly string connString =
-            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=Nay!130408";
+            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
 
         private int idPenjualanTerpilih = 0;
 
@@ -51,7 +51,7 @@ namespace Projek_PBO.Views
                 var da = new NpgsqlDataAdapter(
                     @"SELECT id_penjualan, id_panen, tanggal_penjualan,
                              nama_pembeli, harga_jual, total_pendapatan
-                      FROM penjualan ORDER BY tanggal_penjualan DESC", conn);
+                      FROM penjualan ORDER BY id_penjualan ASC", conn);
                 var dt = new DataTable();
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;

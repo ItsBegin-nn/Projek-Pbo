@@ -9,5 +9,10 @@
 
         public override void MuatData() { }
         public override string GetJudulForm() => "Dasbor";
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

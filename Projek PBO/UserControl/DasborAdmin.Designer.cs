@@ -13,12 +13,18 @@
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 26F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "DasborAdmin";
-            this.Size = new System.Drawing.Size(884, 685);
-            this.ResumeLayout(false);
+            SuspendLayout();
+            // 
+            // DasborAdmin
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            BackColor = SystemColors.Control;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            Name = "DasborAdmin";
+            Size = new Size(841, 576);
+            ResumeLayout(false);
         }
     }
 }
