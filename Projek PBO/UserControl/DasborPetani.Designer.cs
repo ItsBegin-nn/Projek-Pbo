@@ -13,12 +13,15 @@
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 26F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "DasborPetani";
-            this.Size = new System.Drawing.Size(884, 685);
-            this.ResumeLayout(false);
+            SuspendLayout();
+            // 
+            // DasborPetani
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            Name = "DasborPetani";
+            ResumeLayout(false);
         }
     }
 }
