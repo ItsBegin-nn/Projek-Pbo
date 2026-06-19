@@ -18,7 +18,7 @@ public partial class DatabaseHelpers : DbContext
 
     public virtual DbSet<Buah> Buahs { get; set; }
 
-    //public virtual DbSet<Kebun> Kebuns { get; set; }
+    public virtual DbSet<Kebun> Kebuns { get; set; }
 
     public virtual DbSet<Panen> Panens { get; set; }
 
