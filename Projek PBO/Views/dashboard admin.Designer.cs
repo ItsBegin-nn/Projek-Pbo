@@ -181,5 +181,6 @@
         private Button BtnKelolaKebun;
         private Button BtnLihatPanen;
         private Button BtnLogout;
+        private BaseUserControl baseUserControl1;
     }
 }
