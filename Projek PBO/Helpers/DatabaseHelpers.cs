@@ -27,7 +27,7 @@ public partial class DatabaseHelpers : DbContext
     public virtual DbSet<Penjualan> Penjualans { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=bagusaditya");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
