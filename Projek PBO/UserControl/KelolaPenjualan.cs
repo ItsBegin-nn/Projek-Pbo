@@ -8,7 +8,7 @@ namespace Projek_PBO.Views
     public partial class KelolaPenjualan : BaseUserControl
     {
         private readonly string connString =
-            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
+            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=Nay!130408";
 
         private int idPenjualanTerpilih = 0;
 
@@ -195,7 +195,12 @@ namespace Projek_PBO.Views
         private void label6_Click(object sender, EventArgs e) { }
         private void textBox1_TextChanged(object sender, EventArgs e) { }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -15,85 +15,82 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DasborAdmin));
             dataGridView1 = new DataGridView();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
+            LblPengguna = new Label();
+            Lblkebun = new Label();
+            LblBuah = new Label();
+            LblPenjualan = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(138, 374);
-            dataGridView1.Margin = new Padding(4, 4, 4, 4);
+            dataGridView1.Location = new Point(72, 399);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(755, 198);
+            dataGridView1.Size = new Size(691, 158);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // label1
+            // LblPengguna
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(110, 200);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(41, 48);
-            label1.TabIndex = 1;
-            label1.Text = "5";
+            LblPengguna.AutoSize = true;
+            LblPengguna.BackColor = Color.Transparent;
+            LblPengguna.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblPengguna.Location = new Point(81, 239);
+            LblPengguna.Name = "LblPengguna";
+            LblPengguna.Size = new Size(35, 41);
+            LblPengguna.TabIndex = 1;
+            LblPengguna.Text = "5";
             // 
-            // label2
+            // Lblkebun
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(395, 200);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(41, 48);
-            label2.TabIndex = 2;
-            label2.Text = "5";
+            Lblkebun.AutoSize = true;
+            Lblkebun.BackColor = Color.Transparent;
+            Lblkebun.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Lblkebun.Location = new Point(274, 239);
+            Lblkebun.Name = "Lblkebun";
+            Lblkebun.Size = new Size(35, 41);
+            Lblkebun.TabIndex = 2;
+            Lblkebun.Text = "5";
             // 
-            // label3
+            // LblBuah
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(651, 200);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(41, 48);
-            label3.TabIndex = 3;
-            label3.Text = "3";
+            LblBuah.AutoSize = true;
+            LblBuah.BackColor = Color.Transparent;
+            LblBuah.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblBuah.Location = new Point(469, 239);
+            LblBuah.Name = "LblBuah";
+            LblBuah.Size = new Size(35, 41);
+            LblBuah.TabIndex = 3;
+            LblBuah.Text = "3";
             // 
-            // label4
+            // LblPenjualan
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(896, 200);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(83, 48);
-            label4.TabIndex = 4;
-            label4.Text = "100";
+            LblPenjualan.AutoSize = true;
+            LblPenjualan.BackColor = Color.Transparent;
+            LblPenjualan.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblPenjualan.Location = new Point(634, 239);
+            LblPenjualan.Name = "LblPenjualan";
+            LblPenjualan.Size = new Size(69, 41);
+            LblPenjualan.TabIndex = 4;
+            LblPenjualan.Text = "100";
+            LblPenjualan.Click += LblPenjualan_Click;
             // 
             // DasborAdmin
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Stretch;
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            BackgroundImageLayout = ImageLayout.Zoom;
+            Controls.Add(LblPenjualan);
+            Controls.Add(LblBuah);
+            Controls.Add(Lblkebun);
+            Controls.Add(LblPengguna);
             Controls.Add(dataGridView1);
-            Margin = new Padding(4, 4, 4, 4);
             Name = "DasborAdmin";
+            Size = new Size(800, 560);
             Load += DasborAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -101,9 +98,9 @@
         }
 
         private DataGridView dataGridView1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
+        private Label LblPengguna;
+        private Label Lblkebun;
+        private Label LblBuah;
+        private Label LblPenjualan;
     }
 }

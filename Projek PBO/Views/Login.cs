@@ -43,7 +43,6 @@ namespace Projek_PBO
 
             try
             {
-                
                 var pengguna = _authController.Login(user, pass);
 
                 if (pengguna == null)
@@ -55,12 +54,12 @@ namespace Projek_PBO
 
                 if (pengguna.IsAdmin())
                 {
-                    new dashboard_admin().Show();
+                    new dashboard_admin(pengguna.NamaLengkap ?? pengguna.Username).Show();
                     this.Hide();
                 }
                 else if (pengguna.IsPetani())
                 {
-                    new dashboard_petani().Show();
+                    new dashboard_petani(pengguna.NamaLengkap ?? pengguna.Username, pengguna.IdPengguna).Show();
                     this.Hide();
                 }
             }
@@ -70,6 +69,7 @@ namespace Projek_PBO
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void TBpass_TextChanged(object sender, EventArgs e)
         {
 

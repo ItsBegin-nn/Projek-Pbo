@@ -14,6 +14,15 @@ namespace Projek_PBO.Views
         {
             InitializeComponent();
 
+        }
+
+        public dashboard_admin(string namaPengguna) : this()
+        {
+            NamaPengguna = namaPengguna;
+        }
+
+        protected void dashboard_admin_Load(object sender, EventArgs e)
+        {
             panelKonten = new Panel
             {
                 Location = new Point(175, 0),
@@ -22,18 +31,10 @@ namespace Projek_PBO.Views
             };
             this.Controls.Add(panelKonten);
             panelKonten.BringToFront();
-        }
-
-        public dashboard_admin(string namaPengguna) : this()
-        {
-            NamaPengguna = namaPengguna;
-
-            MuatKonten(new DasborAdmin(NamaPengguna), BtnDasbor);
-        }
-
-        protected void dashboard_admin_Load(object sender, EventArgs e)
-        {
+            
             AktifkanTombol(BtnDasbor);
+            
+            MuatKonten(new DasborAdmin(NamaPengguna), BtnDasbor);
         }
 
         public virtual void MuatData() { }
