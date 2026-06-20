@@ -8,13 +8,13 @@ namespace Projek_PBO.Views
     public partial class dashboard_petani : Form
     {
         protected string NamaPengguna { get; set; }
+        protected int IdPengguna { get; set; }
         private Panel panelKonten;
 
         public dashboard_petani()
         {
             InitializeComponent();
 
-            // pindah dari Load ke sini
             panelKonten = new Panel
             {
                 Location = new Point(175, 0),
@@ -25,12 +25,12 @@ namespace Projek_PBO.Views
             panelKonten.BringToFront();
         }
 
-        public dashboard_petani(string namaPengguna) : this()
+        public dashboard_petani(string namaPengguna, int idPengguna) : this()
         {
             NamaPengguna = namaPengguna;
+            IdPengguna = idPengguna;
 
-            // muat DasborPetani saat pertama login
-            MuatKonten(new DasborPetani(NamaPengguna), BtnDasbor);
+            MuatKonten(new DasborPetani(NamaPengguna, IdPengguna), BtnDasbor);
         }
 
         protected void dashboard_admin_Load(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace Projek_PBO.Views
 
         protected void button1_Click(object sender, EventArgs e)
         {
-            MuatKonten(new DasborPetani(NamaPengguna), BtnDasbor);
+            MuatKonten(new DasborPetani(NamaPengguna, IdPengguna), BtnDasbor);
         }
 
         protected void BtnBuken_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace Projek_PBO.Views
 
         protected void BtnInPan_Click(object sender, EventArgs e)
         {
-            MuatKonten(new InputPanen(NamaPengguna), BtnInPan);
+            MuatKonten(new InputPanen(NamaPengguna, IdPengguna), BtnInPan);
         }
 
         protected void BtnBapan_Click(object sender, EventArgs e)
