@@ -25,7 +25,7 @@ namespace Projek_PBO.Controllers
                            FROM penjualan pj
                            JOIN panen pn ON pj.id_panen = pn.id_panen
                            JOIN buah b ON pn.id_buah = b.id_buah
-                           ORDER BY p.id_panen asc";
+                           ORDER BY pj.id_panen asc";
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
             da.Fill(dt);

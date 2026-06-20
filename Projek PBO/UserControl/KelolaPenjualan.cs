@@ -34,7 +34,7 @@ namespace Projek_PBO.Views
                              'Panen #' || id_panen || ' - ' ||
                              TO_CHAR(tanggal_panen, 'DD-MM-YYYY') ||
                              ' (' || berat_kg || ' kg)' AS label_panen
-                      FROM panen ORDER BY p.id_panen", conn);
+                      FROM panen ORDER BY id_panen", conn);
                 var dt = new DataTable();
                 da.Fill(dt);
                 comboBox1.DataSource = dt;

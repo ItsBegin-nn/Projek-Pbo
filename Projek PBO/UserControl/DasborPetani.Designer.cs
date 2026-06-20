@@ -63,7 +63,7 @@
             dataGridView1.Location = new Point(95, 379);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(604, 198);
+            dataGridView1.Size = new Size(604, 100);
             dataGridView1.TabIndex = 5;
             // 
             // DasborPetani

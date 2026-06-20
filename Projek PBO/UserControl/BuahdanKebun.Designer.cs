@@ -13,89 +13,92 @@
 
         private void InitializeComponent()
         {
+            button1 = new Button();
             dvgKebun = new DataGridView();
             dvgBuah = new DataGridView();
-            gbKebun = new GroupBox();
-            gbBuah = new GroupBox();
-            button1 = new Button();
+            label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dvgKebun).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dvgBuah).BeginInit();
-            gbKebun.SuspendLayout();
-            gbBuah.SuspendLayout();
             SuspendLayout();
-            
-            // dvgKebun
-
-            dvgKebun.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgKebun.Location = new Point(-8, 30);
-            dvgKebun.Name = "dvgKebun";
-            dvgKebun.RowHeadersWidth = 62;
-            dvgKebun.Size = new Size(803, 237);
-            dvgKebun.TabIndex = 0;
-            dvgKebun.CellContentClick += dvgKebun_CellContentClick;
-            
-            // dvgBuah
-            
-            dvgBuah.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgBuah.Location = new Point(0, 25);
-            dvgBuah.Name = "dvgBuah";
-            dvgBuah.RowHeadersWidth = 62;
-            dvgBuah.Size = new Size(803, 237);
-            dvgBuah.TabIndex = 1;
-            dvgBuah.CellContentClick += dvgBuah_CellContentClick;
-            
-            // gbKebun
-             
-            gbKebun.Controls.Add(dvgKebun);
-            gbKebun.Location = new Point(135, 16);
-            gbKebun.Name = "gbKebun";
-            gbKebun.Size = new Size(795, 268);
-            gbKebun.TabIndex = 2;
-            gbKebun.TabStop = false;
-            gbKebun.Text = "Daftar Kebun & Komoditas";
-            gbKebun.Enter += gbKebun_Enter;
-            
-            // gbBuah
-            
-            gbBuah.Controls.Add(dvgBuah);
-            gbBuah.Location = new Point(135, 308);
-            gbBuah.Name = "gbBuah";
-            gbBuah.Size = new Size(795, 268);
-            gbBuah.TabIndex = 3;
-            gbBuah.TabStop = false;
-            gbBuah.Text = " Data Buah Terdaftar";
-            
+            // 
             // button1
-            
+            // 
             button1.BackColor = Color.Red;
             button1.ForeColor = Color.Lime;
-            button1.Location = new Point(741, 601);
+            button1.Location = new Point(602, 594);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
+            button1.Size = new Size(90, 27);
             button1.TabIndex = 2;
             button1.Text = "Refresh";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
-
+            button1.Click += Button1_Click;
+            // 
+            // dvgKebun
+            // 
+            dvgKebun.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgKebun.Location = new Point(84, 139);
+            dvgKebun.Margin = new Padding(2);
+            dvgKebun.Name = "dvgKebun";
+            dvgKebun.RowHeadersWidth = 62;
+            dvgKebun.Size = new Size(642, 190);
+            dvgKebun.TabIndex = 0;
+            dvgKebun.CellContentClick += dvgKebun_CellContentClick;
+            // 
+            // dvgBuah
+            // 
+            dvgBuah.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgBuah.Location = new Point(84, 373);
+            dvgBuah.Margin = new Padding(2);
+            dvgBuah.Name = "dvgBuah";
+            dvgBuah.RowHeadersWidth = 62;
+            dvgBuah.Size = new Size(642, 190);
+            dvgBuah.TabIndex = 1;
+            dvgBuah.CellContentClick += dvgBuah_CellContentClick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(103, 342);
+            label1.Name = "label1";
+            label1.Size = new Size(78, 20);
+            label1.TabIndex = 3;
+            label1.Text = "Data Buah";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(103, 107);
+            label2.Name = "label2";
+            label2.Size = new Size(192, 20);
+            label2.TabIndex = 4;
+            label2.Text = "Data Kebun dan Komoditas";
+            // 
             // BuahDanKebun
-
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(dvgBuah);
+            Controls.Add(dvgKebun);
             Controls.Add(button1);
-            Controls.Add(gbBuah);
-            Controls.Add(gbKebun);
+            Margin = new Padding(2);
             Name = "BuahDanKebun";
+            Size = new Size(786, 631);
+            Load += BuahDanKebun_Load;
             ((System.ComponentModel.ISupportInitialize)dvgKebun).EndInit();
             ((System.ComponentModel.ISupportInitialize)dvgBuah).EndInit();
-            gbKebun.ResumeLayout(false);
-            gbBuah.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
-
+        private Button button1;
         private DataGridView dvgKebun;
         private DataGridView dvgBuah;
-        private GroupBox gbKebun;
-        private GroupBox gbBuah;
-        private Button button1;
+        private Label label1;
+        private Label label2;
     }
 }

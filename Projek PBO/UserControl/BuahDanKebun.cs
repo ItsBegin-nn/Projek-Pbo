@@ -1,91 +1,46 @@
 ﻿using System;
 using System.Windows.Forms;
+using Projek_PBO.Controllers;
 
 namespace Projek_PBO.Views
 {
     public partial class BuahDanKebun : BaseUserControl
     {
-        public BuahDanKebun(string namaPengguna)
-            : base(namaPengguna)
+        private readonly KebunController _kebunController;
+        private readonly KelolaBuahController _buahController;
+
+        public BuahDanKebun(string namaPengguna) : base(namaPengguna)
         {
             InitializeComponent();
-            MuatData();
-        }
+            _kebunController = new KebunController();
+            _buahController = new KelolaBuahController();
 
-        public override string GetJudulForm()
-        {
-            return "Buah Dan Kebun";
+            dvgKebun.ReadOnly = true;
+            dvgBuah.ReadOnly = true;
+
+            button1.Click += Button1_Click;
+
+            this.Load += (s, e) => MuatData();
         }
 
         public override void MuatData()
         {
-            LoadDataKebun();
-            LoadDataBuah();
+            dvgKebun.DataSource = _kebunController.GetAll();
+            dvgBuah.DataSource = _buahController.GetAll();
         }
 
-        private void LoadDataKebun()
-        {
-            dvgKebun.Rows.Clear();
+        public override string GetJudulForm() => "Buah Dan Kebun";
 
-            dvgKebun.Rows.Add(
-                1,
-                "Kebun Apel",
-                "Malang",
-                2.5
-            );
-
-            dvgKebun.Rows.Add(
-                2,
-                "Kebun Jeruk",
-                "Batu",
-                1.8
-            );
-        }
-
-        private void LoadDataBuah()
-        {
-            dvgBuah.Rows.Clear();
-
-            dvgBuah.Rows.Add(
-                "Apel",
-                "120 Kg",
-                "20/06/2026"
-            );
-
-            dvgBuah.Rows.Add(
-                "Jeruk",
-                "80 Kg",
-                "18/06/2026"
-            );
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             MuatData();
-
-            MessageBox.Show(
-                "Data berhasil diperbarui!",
-                "Informasi",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
         }
 
-        private void dvgKebun_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        private void dvgKebun_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void dvgBuah_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void gbKebun_Enter(object sender, EventArgs e) { }
 
-        }
-
-        private void dvgBuah_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void gbKebun_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gbBuah_Enter(object sender, EventArgs e)
+        private void BuahDanKebun_Load(object sender, EventArgs e)
         {
 
         }
