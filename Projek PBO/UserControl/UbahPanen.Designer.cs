@@ -13,7 +13,6 @@
 
         private void InitializeComponent()
         {
-            dgvDataPanen = new DataGridView();
             dgvEditData = new DataGridView();
             cbBuah = new ComboBox();
             cbKebun = new ComboBox();
@@ -25,22 +24,12 @@
             lbl3 = new Label();
             lbl4 = new Label();
             lbl5 = new Label();
-            button1 = new Button();
-            button2 = new Button();
             btnCancel = new Button();
             btnSave = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvDataPanen).BeginInit();
+            label1 = new Label();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvEditData).BeginInit();
             SuspendLayout();
-            // 
-            // dgvDataPanen
-            // 
-            dgvDataPanen.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDataPanen.Location = new Point(173, 53);
-            dgvDataPanen.Name = "dgvDataPanen";
-            dgvDataPanen.RowHeadersWidth = 62;
-            dgvDataPanen.Size = new Size(743, 194);
-            dgvDataPanen.TabIndex = 0;
             // 
             // dgvEditData
             // 
@@ -66,7 +55,7 @@
             cbKebun.Name = "cbKebun";
             cbKebun.Size = new Size(252, 33);
             cbKebun.TabIndex = 3;
-  
+            // 
             // dtpTanggalPanen
             // 
             dtpTanggalPanen.Location = new Point(226, 428);
@@ -148,24 +137,6 @@
             lbl5.TabIndex = 11;
             lbl5.Text = "BERAT (kg)";
             // 
-            // button1
-            // 
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 12;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(8, 8);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 13;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // btnCancel
             // 
             btnCancel.BackColor = Color.Red;
@@ -188,14 +159,35 @@
             btnSave.Text = "SAVE";
             btnSave.UseVisualStyleBackColor = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Palatino Linotype", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(173, 55);
+            label1.Name = "label1";
+            label1.Size = new Size(411, 32);
+            label1.TabIndex = 16;
+            label1.Text = "Pilih Data Panen Yang Ingin Diubah";
+            label1.Click += label1_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(173, 90);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(731, 33);
+            comboBox1.TabIndex = 17;
+            // 
             // UbahPanen
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(comboBox1);
+            Controls.Add(label1);
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(lbl5);
             Controls.Add(lbl4);
             Controls.Add(lbl3);
@@ -207,9 +199,7 @@
             Controls.Add(cbKebun);
             Controls.Add(cbBuah);
             Controls.Add(dgvEditData);
-            Controls.Add(dgvDataPanen);
             Name = "UbahPanen";
-            ((System.ComponentModel.ISupportInitialize)dgvDataPanen).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvEditData).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -227,9 +217,9 @@
         private Label lbl3;
         private Label lbl4;
         private Label lbl5;
-        private Button button1;
-        private Button button2;
         private Button btnCancel;
         private Button btnSave;
+        private Label label1;
+        private ComboBox comboBox1;
     }
 }
