@@ -19,7 +19,7 @@ namespace Projek_PBO.Controllers
     public class PanenController
     {
         private readonly string connString =
-            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=Nay!130408";
+            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
 
         // Mengambil daftar panen untuk ditampilkan di ComboBox (id + label gabungan)
         public DataTable AmbilDaftarPanenUntukComboBox()
