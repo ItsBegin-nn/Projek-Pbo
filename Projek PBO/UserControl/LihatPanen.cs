@@ -6,7 +6,7 @@ namespace Projek_PBO.Views
 {
     public partial class LihatPanen : BaseUserControl
     {
-        PanenController controller = new PanenController();
+        LhtPanenController controller = new LhtPanenController();
 
         public LihatPanen(string namaPengguna) : base(namaPengguna)
         {

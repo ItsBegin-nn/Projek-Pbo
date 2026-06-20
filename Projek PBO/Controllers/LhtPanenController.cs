@@ -4,9 +4,9 @@ using Npgsql;
 
 namespace Projek_PBO.Controllers
 {
-    public class PanenController
+    public class LhtPanenController
     {
-        string connString = "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=Nay!130408";
+        string connString = "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
 
         // ambil semua data panen buat ditampilin di tabel
         public DataTable GetAll()
@@ -27,7 +27,7 @@ namespace Projek_PBO.Controllers
                            JOIN buah b ON p.id_buah = b.id_buah
                            JOIN kebun k ON p.id_kebun = k.id_kebun
                            JOIN pengguna pg ON p.id_petani = pg.id_pengguna
-                           ORDER BY p.tanggal_panen DESC";
+                           ORDER BY p.id_panen ASC";
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
             da.Fill(dt);

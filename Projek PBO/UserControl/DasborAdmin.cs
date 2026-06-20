@@ -53,9 +53,6 @@ namespace Projek_PBO.Views
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -25,9 +25,10 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Palatino Linotype", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(59, 51);
+            label1.Location = new Point(47, 90);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(217, 32);
+            label1.Size = new Size(178, 27);
             label1.TabIndex = 0;
             label1.Text = "Menu Lihat Panen";
             // 
@@ -37,28 +38,31 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(59, 115);
+            label2.Location = new Point(47, 141);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(156, 24);
+            label2.Size = new Size(133, 21);
             label2.TabIndex = 1;
             label2.Text = "Data Hasil Panen";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(59, 142);
+            dataGridView1.Location = new Point(47, 163);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(841, 309);
+            dataGridView1.Size = new Size(673, 247);
             dataGridView1.TabIndex = 2;
             // 
             // LihatPanen
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dataGridView1);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "LihatPanen";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

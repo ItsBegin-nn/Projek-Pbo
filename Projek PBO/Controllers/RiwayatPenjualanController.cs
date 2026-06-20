@@ -5,7 +5,7 @@ namespace Projek_PBO.Controllers
 {
     public class RiwayatPenjualanController
     {
-        string connString = "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=Nay!130408";
+        string connString = "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
 
         // ambil semua riwayat penjualan buat ditampilin di tabel
         public DataTable GetRiwayat()
@@ -25,7 +25,7 @@ namespace Projek_PBO.Controllers
                            FROM penjualan pj
                            JOIN panen pn ON pj.id_panen = pn.id_panen
                            JOIN buah b ON pn.id_buah = b.id_buah
-                           ORDER BY pj.tanggal_penjualan DESC";
+                           ORDER BY p.id_panen asc";
 
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
             da.Fill(dt);

@@ -8,7 +8,7 @@ namespace Projek_PBO.Views
     public partial class KelolaPenjualan : BaseUserControl
     {
         private readonly string connString =
-            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=Nay!130408";
+            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
 
         private int idPenjualanTerpilih = 0;
 
@@ -34,7 +34,7 @@ namespace Projek_PBO.Views
                              'Panen #' || id_panen || ' - ' ||
                              TO_CHAR(tanggal_panen, 'DD-MM-YYYY') ||
                              ' (' || berat_kg || ' kg)' AS label_panen
-                      FROM panen ORDER BY tanggal_panen DESC", conn);
+                      FROM panen ORDER BY p.id_panen", conn);
                 var dt = new DataTable();
                 da.Fill(dt);
                 comboBox1.DataSource = dt;

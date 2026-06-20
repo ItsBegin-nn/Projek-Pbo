@@ -1,74 +1,107 @@
 ﻿using System;
 using System.Windows.Forms;
+using Projek_PBO.Controllers;
 
 namespace Projek_PBO.Views
 {
     public partial class KelolaBuah : BaseUserControl
     {
-        public KelolaBuah(string namaPengguna)
-            : base(namaPengguna)
+        private readonly KelolaBuahController _controller;
+        private int _selectedId = 0;
+
+        public KelolaBuah(string namaPengguna) : base(namaPengguna)
         {
             InitializeComponent();
-            MuatData();
-        }
+            _controller = new KelolaBuahController();
 
-        public override string GetJudulForm()
-        {
-            return "Kelola Buah";
+            dgvBuah.AutoGenerateColumns = false;
+            dgvBuah.CellClick += DgvBuah_CellClick;
+            btnTambah.Click += BtnTambah_Click;
+
+            colId.DataPropertyName = "IdBuah";
+            colNama.DataPropertyName = "NamaBuah";
+            ColSatuan.DataPropertyName = "Satuan";
+            ColHarga.DataPropertyName = "Harga";
+
+            this.Load += (s, e) => MuatData();
         }
 
         public override void MuatData()
         {
-            dgvBuah.Rows.Clear();
-
-            dgvBuah.Rows.Add(
-                1,
-                "Apel",
-                "Kg",
-                25000
-            );
-
-            dgvBuah.Rows.Add(
-                2,
-                "Jeruk",
-                "Kg",
-                18000
-            );
+            dgvBuah.DataSource = _controller.GetAll();
         }
 
-        private void btnTambah_Click(object sender, EventArgs e)
+        public override string GetJudulForm() => "Kelola Buah";
+
+        private void DgvBuah_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (txtNamaBuah.Text == "" ||
-                txtSatuan.Text == "" ||
-                txtHarga.Text == "")
+            if (e.RowIndex < 0) return;
+            var row = dgvBuah.Rows[e.RowIndex];
+
+            _selectedId = Convert.ToInt32(row.Cells["colId"].Value);
+            txtNamaBuah.Text = row.Cells["colNama"].Value?.ToString();
+            txtSatuan.Text = row.Cells["ColSatuan"].Value?.ToString();
+            txtHarga.Text = row.Cells["ColHarga"].Value?.ToString();
+
+            btnTambah.Text = "Update";
+        }
+
+        private void BtnTambah_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNamaBuah.Text) ||
+                string.IsNullOrWhiteSpace(txtSatuan.Text))
             {
-                MessageBox.Show("Semua data harus diisi!");
+                MessageBox.Show("Nama buah dan satuan wajib diisi!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            dgvBuah.Rows.Add(
-                dgvBuah.Rows.Count + 1,
-                txtNamaBuah.Text,
-                txtSatuan.Text,
-                txtHarga.Text
-            );
+            if (!int.TryParse(txtHarga.Text, out int harga))
+            {
+                MessageBox.Show("Harga harus berupa angka!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            MessageBox.Show("Data buah berhasil ditambahkan!");
+            try
+            {
+                if (_selectedId == 0)
+                {
+                    _controller.Tambah(txtNamaBuah.Text, txtSatuan.Text, harga);
+                    MessageBox.Show("Buah berhasil ditambahkan!", "Sukses",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    _controller.Update(_selectedId, txtNamaBuah.Text, txtSatuan.Text, harga);
+                    MessageBox.Show("Buah berhasil diupdate!", "Sukses",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
+                Bersihkan();
+                MuatData();
+            }
+            catch (Exception ex)
+            {
+                string pesan = ex.Message;
+                if (ex.InnerException != null)
+                    pesan += "\n\nDetail: " + ex.InnerException.Message;
+
+                MessageBox.Show("Error: " + pesan, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    
+
+        private void Bersihkan()
+        {
+            _selectedId = 0;
             txtNamaBuah.Clear();
             txtSatuan.Clear();
             txtHarga.Clear();
+            btnTambah.Text = "Tambah";
         }
 
-        private void dgvBuah_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        // Tambahkan ini
-        private void lblNamaBuah_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void lblNamaBuah_Click(object sender, EventArgs e) { }
     }
 }

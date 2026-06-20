@@ -31,9 +31,10 @@
             // lblNamaBuah
             // 
             lblNamaBuah.AutoSize = true;
-            lblNamaBuah.Location = new Point(164, 87);
+            lblNamaBuah.Location = new Point(130, 108);
+            lblNamaBuah.Margin = new Padding(2, 0, 2, 0);
             lblNamaBuah.Name = "lblNamaBuah";
-            lblNamaBuah.Size = new Size(103, 25);
+            lblNamaBuah.Size = new Size(86, 20);
             lblNamaBuah.TabIndex = 0;
             lblNamaBuah.Text = "Nama Buah";
             lblNamaBuah.Click += lblNamaBuah_Click;
@@ -41,49 +42,55 @@
             // lblHarga
             // 
             lblHarga.AutoSize = true;
-            lblHarga.Location = new Point(164, 182);
+            lblHarga.Location = new Point(130, 184);
+            lblHarga.Margin = new Padding(2, 0, 2, 0);
             lblHarga.Name = "lblHarga";
-            lblHarga.Size = new Size(110, 25);
+            lblHarga.Size = new Size(92, 20);
             lblHarga.TabIndex = 1;
             lblHarga.Text = "Harga Dasar";
             // 
             // lblSatuan
             // 
             lblSatuan.AutoSize = true;
-            lblSatuan.Location = new Point(523, 87);
+            lblSatuan.Location = new Point(417, 108);
+            lblSatuan.Margin = new Padding(2, 0, 2, 0);
             lblSatuan.Name = "lblSatuan";
-            lblSatuan.Size = new Size(66, 25);
+            lblSatuan.Size = new Size(54, 20);
             lblSatuan.TabIndex = 2;
             lblSatuan.Text = "Satuan";
             // 
             // txtSatuan
             // 
-            txtSatuan.Location = new Point(523, 130);
+            txtSatuan.Location = new Point(417, 142);
+            txtSatuan.Margin = new Padding(2, 2, 2, 2);
             txtSatuan.Name = "txtSatuan";
-            txtSatuan.Size = new Size(247, 31);
+            txtSatuan.Size = new Size(198, 27);
             txtSatuan.TabIndex = 4;
             // 
             // txtNamaBuah
             // 
-            txtNamaBuah.Location = new Point(164, 130);
+            txtNamaBuah.Location = new Point(130, 142);
+            txtNamaBuah.Margin = new Padding(2, 2, 2, 2);
             txtNamaBuah.Name = "txtNamaBuah";
-            txtNamaBuah.Size = new Size(247, 31);
+            txtNamaBuah.Size = new Size(198, 27);
             txtNamaBuah.TabIndex = 5;
             // 
             // txtHarga
             // 
-            txtHarga.Location = new Point(164, 230);
+            txtHarga.Location = new Point(130, 222);
+            txtHarga.Margin = new Padding(2, 2, 2, 2);
             txtHarga.Name = "txtHarga";
-            txtHarga.Size = new Size(247, 31);
+            txtHarga.Size = new Size(198, 27);
             txtHarga.TabIndex = 6;
             // 
             // btnTambah
             // 
             btnTambah.BackColor = Color.Lime;
             btnTambah.ForeColor = Color.Red;
-            btnTambah.Location = new Point(806, 230);
+            btnTambah.Location = new Point(644, 222);
+            btnTambah.Margin = new Padding(2, 2, 2, 2);
             btnTambah.Name = "btnTambah";
-            btnTambah.Size = new Size(112, 34);
+            btnTambah.Size = new Size(90, 27);
             btnTambah.TabIndex = 7;
             btnTambah.Text = "Tambah";
             btnTambah.UseVisualStyleBackColor = false;
@@ -92,10 +99,11 @@
             // 
             dgvBuah.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBuah.Columns.AddRange(new DataGridViewColumn[] { colId, colNama, ColSatuan, ColHarga });
-            dgvBuah.Location = new Point(146, 310);
+            dgvBuah.Location = new Point(116, 286);
+            dgvBuah.Margin = new Padding(2, 2, 2, 2);
             dgvBuah.Name = "dgvBuah";
             dgvBuah.RowHeadersWidth = 62;
-            dgvBuah.Size = new Size(815, 225);
+            dgvBuah.Size = new Size(652, 180);
             dgvBuah.TabIndex = 8;
             // 
             // colId
@@ -128,7 +136,7 @@
             // 
             // KelolaBuah
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dgvBuah);
             Controls.Add(btnTambah);
@@ -138,6 +146,7 @@
             Controls.Add(lblSatuan);
             Controls.Add(lblHarga);
             Controls.Add(lblNamaBuah);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "KelolaBuah";
             ((System.ComponentModel.ISupportInitialize)dgvBuah).EndInit();
             ResumeLayout(false);
