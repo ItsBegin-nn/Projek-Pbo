@@ -8,7 +8,7 @@ namespace Projek_PBO.Views
     public partial class KelolaPenjualan : BaseUserControl
     {
         private readonly string connString =
-            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
+            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=Nay!130408";
 
         private int idPenjualanTerpilih = 0;
 
