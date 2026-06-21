@@ -21,7 +21,6 @@ namespace Projek_PBO.Views
             dataGridView1.CellClick += DataGridView1_CellClick;
             BtnSimpan.Click += BtnSimpan_Click;
 
-            // pindah MuatData ke Load
             this.Load += (s, e) => MuatData();
         }
 
@@ -34,11 +33,9 @@ namespace Projek_PBO.Views
             if (dataGridView1.Columns["Panens"] != null)
                 dataGridView1.Columns["Panens"].Visible = false;
 
-            // hapus kolom No lama kalau ada, biar tidak dobel
             if (dataGridView1.Columns["No"] != null)
                 dataGridView1.Columns.Remove("No");
 
-            // tambah kolom No baru di paling kiri
             dataGridView1.Columns.Insert(0, new DataGridViewTextBoxColumn
             {
                 Name = "No",
@@ -47,7 +44,6 @@ namespace Projek_PBO.Views
                 ReadOnly = true
             });
 
-            // isi nomor urut 1, 2, 3...
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 dataGridView1.Rows[i].Cells["No"].Value = i + 1;
@@ -57,7 +53,6 @@ namespace Projek_PBO.Views
 
         public override string GetJudulForm() => "Kelola Pengguna";
 
-        // klik baris tabel — isi form input
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -69,11 +64,9 @@ namespace Projek_PBO.Views
             Tbuser.Text = row.Cells["Username"].Value?.ToString();
             comboBox1.SelectedItem = row.Cells["Role"].Value?.ToString();
 
-            // ganti teks tombol jadi Update
             BtnSimpan.Text = "Update";
         }
 
-        // tombol Simpan/Update
         private void BtnSimpan_Click(object sender, EventArgs e)
         {
             string nama = Tbnama.Text;
@@ -123,7 +116,6 @@ namespace Projek_PBO.Views
             BtnSimpan.Text = "Simpan";
         }
 
-        // event kosong dari Designer
         private void textBox2_TextChanged(object sender, EventArgs e) { }
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e) { }
         private void Lbpass_Click(object sender, EventArgs e) { }

@@ -16,7 +16,7 @@ namespace Projek_PBO.Views
             NamaPengguna = namaPengguna;
         }
 
-        // virtual — bisa di-override tiap child (polymorphism tetap ada)
+        // POLYMORPHISM
         public virtual void MuatData() { }
         public virtual string GetJudulForm() => "Base";
     }

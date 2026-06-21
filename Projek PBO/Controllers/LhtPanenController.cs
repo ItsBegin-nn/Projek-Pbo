@@ -8,7 +8,6 @@ namespace Projek_PBO.Controllers
     {
         string connString = "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
 
-        // ambil semua data panen buat ditampilin di tabel
         public DataTable GetAll()
         {
             DataTable dt = new DataTable();

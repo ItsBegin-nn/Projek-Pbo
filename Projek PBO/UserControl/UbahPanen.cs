@@ -80,8 +80,7 @@ namespace Projek_PBO.Views
 
         private void TxtBerat_TextChanged(object sender, EventArgs e)
         {
-            // estimasi otomatis dihitung ulang di controller saat save,
-            // di sini cuma preview kalau mau ditambahkan nanti
+           
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

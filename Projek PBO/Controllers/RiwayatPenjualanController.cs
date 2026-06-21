@@ -7,7 +7,6 @@ namespace Projek_PBO.Controllers
     {
         string connString = "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
 
-        // ambil semua riwayat penjualan buat ditampilin di tabel
         public DataTable GetRiwayat()
         {
             DataTable dt = new DataTable();

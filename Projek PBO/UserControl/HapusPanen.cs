@@ -20,7 +20,8 @@ namespace Projek_PBO.Views
 
             this.Load += (s, e) => MuatData();
         }
-
+       
+        // POLYMORPHISM
         public override void MuatData()
         {
             var listPanen = _controller.GetAll();

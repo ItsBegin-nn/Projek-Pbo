@@ -15,7 +15,7 @@ namespace Projek_PBO.Views
             _controller = new DasborPetaniController();
             _idPetani = idPetani;
         }
-
+        // POLYMORPHISM
         public override void MuatData()
         {
             label1.Text = _controller.GetTotalKebun(_idPetani).ToString();

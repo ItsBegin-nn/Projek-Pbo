@@ -14,6 +14,7 @@ namespace Projek_PBO.Views
             _controller = new DasborAdminController();
         }
 
+        // POLYMORPHISM
         public override void MuatData()
         {
             LblPengguna.Text = _controller.GetTotalPengguna().ToString();

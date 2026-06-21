@@ -23,6 +23,7 @@ namespace Projek_PBO.Views
             this.Load += (s, e) => MuatData();
         }
 
+        // POLYMORPHISM
         public override void MuatData()
         {
             dvgKebun.DataSource = _kebunController.GetAll();

@@ -13,7 +13,6 @@ namespace Projek_PBO.Controllers
             _db = new DatabaseHelpers();
         }
 
-        // total kebun yang pernah dipanen petani ini
         public int GetTotalKebun(int idPetani)
         {
             return _db.Panens
@@ -23,7 +22,6 @@ namespace Projek_PBO.Controllers
                 .Count();
         }
 
-        // total jenis buah yang pernah dipanen petani ini
         public int GetTotalBuah(int idPetani)
         {
             return _db.Panens
@@ -33,7 +31,6 @@ namespace Projek_PBO.Controllers
                 .Count();
         }
 
-        // total berat panen bulan ini
         public decimal GetPanenBulanIni(int idPetani)
         {
             var bulanIni = DateTime.Now.Month;
@@ -46,7 +43,6 @@ namespace Projek_PBO.Controllers
                 .Sum(p => p.BeratKg);
         }
 
-        // aktivitas panen terbaru milik petani ini
         public List<Panen> GetPanenTerbaru(int idPetani)
         {
             return _db.Panens

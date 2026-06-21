@@ -13,7 +13,6 @@ namespace Projek_PBO.Controllers
             _db = new DatabaseHelpers();
         }
 
-        // daftar panen milik petani tertentu, untuk dropdown
         public List<Panen> GetPanenByPetani(int idPetani)
         {
             return _db.Panens
@@ -48,7 +47,7 @@ namespace Projek_PBO.Controllers
             if (buah != null)
             {
                 panen.EstimasiPendapatan = beratBaru * buah.Harga;
-                buah.Stock += (int)selisih; // sesuaikan stock sesuai selisih
+                buah.Stock += (int)selisih; 
             }
 
             _db.SaveChanges();

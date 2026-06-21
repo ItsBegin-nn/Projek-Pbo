@@ -3,7 +3,8 @@ using Projek_PBO.Models;
 
 namespace Projek_PBO.Controllers
 {
-    public class KebunController
+    // ===== KONSEP: INHERITANCE =====
+    public class KebunController : BaseCrudController<Kebun>
     {
         private readonly DatabaseHelpers _db;
 
@@ -12,9 +13,20 @@ namespace Projek_PBO.Controllers
             _db = new DatabaseHelpers();
         }
 
-        public List<Kebun> GetAll()
+        // ===== KONSEP: OVERRIDING =====
+        public override List<Kebun> GetAll()
         {
             return _db.Kebuns.OrderBy(k => k.IdKebun).ToList();
+        }
+
+        // ===== KONSEP: OVERLOADING =====
+        public List<Kebun> GetAll(string keyword)
+        {
+            return _db.Kebuns
+                .Where(k => k.NamaKebun.Contains(keyword) ||
+                            (k.Lokasi != null && k.Lokasi.Contains(keyword)))
+                .OrderBy(k => k.IdKebun)
+                .ToList();
         }
 
         public void Tambah(string nama, string lokasi, decimal luas)
@@ -38,7 +50,8 @@ namespace Projek_PBO.Controllers
             _db.SaveChanges();
         }
 
-        public void Hapus(int id)
+        // ===== KONSEP: OVERRIDING =====
+        public override void Hapus(int id)
         {
             var k = _db.Kebuns.Find(id);
             if (k != null)

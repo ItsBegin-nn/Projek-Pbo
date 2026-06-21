@@ -3,7 +3,9 @@ using Projek_PBO.Models;
 
 namespace Projek_PBO.Controllers
 {
-    public class PenggunaController
+    // ===== KONSEP: INHERITANCE =====
+    // Mewarisi BaseCrudController, otomatis juga memenuhi ICrudController<Pengguna>
+    public class PenggunaController : BaseCrudController<Pengguna>
     {
         private readonly DatabaseHelpers _db;
 
@@ -12,9 +14,22 @@ namespace Projek_PBO.Controllers
             _db = new DatabaseHelpers();
         }
 
-        public List<Pengguna> GetAll()
+        // ===== KONSEP: OVERRIDING =====
+        // Wajib diisi karena GetAll() abstract di BaseCrudController
+        public override List<Pengguna> GetAll()
         {
             return _db.Penggunas.OrderBy(p => p.IdPengguna).ToList();
+        }
+
+        // ===== KONSEP: OVERLOADING =====
+        // Nama method sama (GetAll), parameter beda (ada keyword pencarian)
+        public List<Pengguna> GetAll(string keyword)
+        {
+            return _db.Penggunas
+                .Where(p => p.Username.Contains(keyword) ||
+                            (p.NamaLengkap != null && p.NamaLengkap.Contains(keyword)))
+                .OrderBy(p => p.IdPengguna)
+                .ToList();
         }
 
         public void Tambah(string nama, string username, string password, string role)
@@ -40,7 +55,8 @@ namespace Projek_PBO.Controllers
             _db.SaveChanges();
         }
 
-        public void Hapus(int id)
+        // ===== KONSEP: OVERRIDING =====
+        public override void Hapus(int id)
         {
             var p = _db.Penggunas.Find(id);
             if (p != null)

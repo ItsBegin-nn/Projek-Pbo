@@ -4,8 +4,7 @@ using System.Collections.Generic;
 namespace Projek_PBO.Models;
 
 
-//===========================
-// 1. ENKAPSULASI : PRIVATE FIELDS
+
 public partial class Kebun
 {
     public int IdKebun {  get; set; }

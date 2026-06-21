@@ -78,7 +78,6 @@ namespace Projek_PBO.Views
 
         protected void button1_Click(object sender, EventArgs e)
         {
-            // kembali ke DasborAdmin
             MuatKonten(new DasborAdmin(NamaPengguna), BtnDasbor);
         }
 

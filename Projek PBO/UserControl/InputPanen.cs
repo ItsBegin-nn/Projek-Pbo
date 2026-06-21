@@ -31,23 +31,19 @@ namespace Projek_PBO.Views
             TbBerat.TextChanged += HitungEstimasi;
             TbHarga.TextChanged += HitungEstimasi;
 
-            // ← tambah ini — hanya boleh angka dan titik desimal
             TbBerat.KeyPress += HanyaAngka_KeyPress;
             TbHarga.KeyPress += HanyaAngka_KeyPress;
         }
 
-        // validasi hanya angka dan satu titik desimal
         private void HanyaAngka_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox tb = (TextBox)sender;
 
-            // izinkan angka, backspace, dan satu titik desimal
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true;
             }
 
-            // cegah lebih dari satu titik desimal
             if (e.KeyChar == '.' && tb.Text.Contains('.'))
             {
                 e.Handled = true;
