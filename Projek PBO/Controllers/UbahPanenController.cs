@@ -1,95 +1,57 @@
-﻿using Npgsql;
-using System;
-using System.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Projek_PBO.Helpers;
+using Projek_PBO.Models;
 
 namespace Projek_PBO.Controllers
 {
-    // Menyimpan detail satu data panen untuk ditampilkan/diedit di form
-    public class PanenDetail
+    public class UbahPanenController
     {
-        public int IdPanen { get; set; }
-        public DateTime TanggalPanen { get; set; }
-        public decimal BeratKg { get; set; }
-        public string NamaBuah { get; set; } = "";
-        public string NamaKebun { get; set; } = "";
-        public decimal HargaPerKg { get; set; }
-    }
+        private readonly DatabaseHelpers _db;
 
-    // Controller khusus untuk semua operasi database terkait tabel panen
-    public class PanenController
-    {
-        private readonly string connString =
-            "Host=localhost;Port=5432;Database=Projek PBO;Username=postgres;Password=FATH354";
-
-        // Mengambil daftar panen untuk ditampilkan di ComboBox (id + label gabungan)
-        public DataTable AmbilDaftarPanenUntukComboBox()
+        public UbahPanenController()
         {
-            using var conn = new NpgsqlConnection(connString);
-            conn.Open();
-            var da = new NpgsqlDataAdapter(
-                @"SELECT p.id_panen,
-                         'Panen #' || p.id_panen || ' - ' ||
-                         TO_CHAR(p.tanggal_panen, 'DD-MM-YYYY') ||
-                         ' (' || b.nama_buah || ')' AS label_panen
-                  FROM panen p
-                  JOIN buah b ON p.id_buah = b.id_buah
-                  ORDER BY p.tanggal_panen DESC", conn);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            _db = new DatabaseHelpers();
         }
 
-        // Mengambil detail satu panen (termasuk nama buah, kebun, dan harga per kg)
-        public PanenDetail AmbilDetailPanen(int idPanen)
+        // daftar panen milik petani tertentu, untuk dropdown
+        public List<Panen> GetPanenByPetani(int idPetani)
         {
-            using var conn = new NpgsqlConnection(connString);
-            conn.Open();
-            var cmd = new NpgsqlCommand(
-                @"SELECT p.tanggal_panen, p.berat_kg,
-                         b.nama_buah, b.harga AS harga_per_kg,
-                         k.nama_kebun
-                  FROM panen p
-                  JOIN buah b ON p.id_buah = b.id_buah
-                  JOIN kebun k ON p.id_kebun = k.id_kebun
-                  WHERE p.id_panen = @id", conn);
-            cmd.Parameters.AddWithValue("@id", idPanen);
+            return _db.Panens
+                .Include(p => p.IdBuahNavigation)
+                .Include(p => p.IdKebunNavigation)
+                .Where(p => p.IdPetani == idPetani)
+                .OrderByDescending(p => p.IdPanen)
+                .ToList();
+        }
 
-            using var reader = cmd.ExecuteReader();
-            if (!reader.Read())
-                return null;
+        public Panen? GetById(int idPanen)
+        {
+            return _db.Panens
+                .Include(p => p.IdBuahNavigation)
+                .Include(p => p.IdKebunNavigation)
+                .FirstOrDefault(p => p.IdPanen == idPanen);
+        }
 
-            var tanggalRaw = reader["tanggal_panen"];
-            DateTime tanggal = (tanggalRaw is DateOnly d)
-                ? d.ToDateTime(TimeOnly.MinValue)
-                : Convert.ToDateTime(tanggalRaw);
+        public void UbahPanen(int idPanen, DateOnly tanggalBaru, decimal beratBaru)
+        {
+            var panen = _db.Panens.Find(idPanen);
+            if (panen == null) return;
 
-            return new PanenDetail
+            decimal beratLama = panen.BeratKg;
+            decimal selisih = beratBaru - beratLama;
+
+            var buah = _db.Buahs.Find(panen.IdBuah);
+
+            panen.TanggalPanen = tanggalBaru;
+            panen.BeratKg = beratBaru;
+
+            if (buah != null)
             {
-                IdPanen = idPanen,
-                TanggalPanen = tanggal,
-                BeratKg = Convert.ToDecimal(reader["berat_kg"]),
-                NamaBuah = reader["nama_buah"].ToString(),
-                NamaKebun = reader["nama_kebun"].ToString(),
-                HargaPerKg = Convert.ToDecimal(reader["harga_per_kg"])
-            };
-        }
+                panen.EstimasiPendapatan = beratBaru * buah.Harga;
+                buah.Stock += (int)selisih; // sesuaikan stock sesuai selisih
+            }
 
-        // Mengubah data panen (tanggal, berat, dan estimasi pendapatan)
-        public void UbahDataPanen(int idPanen, DateTime tanggalBaru, decimal beratBaru, decimal estimasiPendapatanBaru)
-        {
-            using var conn = new NpgsqlConnection(connString);
-            conn.Open();
-            var cmd = new NpgsqlCommand(
-                @"UPDATE panen SET
-                    tanggal_panen = @tgl,
-                    berat_kg = @berat,
-                    estimasi_pendapatan = @estimasi
-                  WHERE id_panen = @id", conn);
-            cmd.Parameters.AddWithValue("@tgl", DateOnly.FromDateTime(tanggalBaru));
-            cmd.Parameters.AddWithValue("@berat", beratBaru);
-            cmd.Parameters.AddWithValue("@estimasi", estimasiPendapatanBaru);
-            cmd.Parameters.AddWithValue("@id", idPanen);
-            cmd.ExecuteNonQuery();
+            _db.SaveChanges();
         }
     }
 }

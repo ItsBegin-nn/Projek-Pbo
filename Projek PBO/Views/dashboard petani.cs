@@ -94,7 +94,7 @@ namespace Projek_PBO.Views
 
         protected void BtnBapan_Click(object sender, EventArgs e)
         {
-            MuatKonten(new UbahPanen(NamaPengguna), BtnBapan);
+            MuatKonten(new UbahPanen(NamaPengguna, IdPengguna), BtnBapan);
         }
 
         protected void BtnHapen_Click(object sender, EventArgs e)

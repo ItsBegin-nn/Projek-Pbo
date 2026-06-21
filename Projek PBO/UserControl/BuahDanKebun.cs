@@ -27,6 +27,13 @@ namespace Projek_PBO.Views
         {
             dvgKebun.DataSource = _kebunController.GetAll();
             dvgBuah.DataSource = _buahController.GetAll();
+
+           
+            if (dvgBuah.Columns["Panens"] != null)
+                dvgBuah.Columns["Panens"].Visible = false;
+
+            if (dvgKebun.Columns["Panens"] != null)
+                dvgKebun.Columns["Panens"].Visible = false;
         }
 
         public override string GetJudulForm() => "Buah Dan Kebun";

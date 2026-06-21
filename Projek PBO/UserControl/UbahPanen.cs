@@ -1,159 +1,123 @@
-﻿using Projek_PBO.Controllers;
-using System;
+﻿using System;
+using System.Linq;
 using System.Windows.Forms;
+using Projek_PBO.Controllers;
 
 namespace Projek_PBO.Views
 {
     public partial class UbahPanen : BaseUserControl
     {
-        // Semua akses database lewat Controller ini, tidak ada SQL di file UI
-        private readonly PanenController panenController = new PanenController();
+        private readonly UbahPanenController _controller;
+        private readonly int _idPetani;
+        private int _idPanenDipilih = 0;
+        private bool _sedangMemuatData = false;
 
-        // Pemetaan komponen (sesuai Designer):
-        //   comboBox1       -> Pilih data panen yang diubah (value = id_panen)
-        //   cbBuah          -> Nama buah (tampilan saja, tidak bisa diganti)
-        //   cbKebun         -> Nama kebun (tampilan saja, tidak bisa diganti)
-        //   dtpTanggalPanen -> Tanggal panen (bisa diedit)
-        //   txtBerat        -> Berat (kg) (bisa diedit)
-        //   txtHarga        -> Estimasi pendapatan = berat x harga per kg (otomatis, read-only)
-        //   btnSave         -> Simpan perubahan
-        //   btnCancel       -> Batal / kosongkan form
-
-        private int idPanenDipilih = 0;
-        private decimal hargaPerKgBuahTerpilih = 0;
-        private bool sedangMemuatData = false;
-
-        public UbahPanen(string namaPengguna)
-            : base(namaPengguna)
+        public UbahPanen(string namaPengguna, int idPetani) : base(namaPengguna)
         {
             InitializeComponent();
+            _controller = new UbahPanenController();
+            _idPetani = idPetani;
 
-            cbBuah.Enabled = false;
-            cbKebun.Enabled = false;
+
             txtHarga.ReadOnly = true;
 
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+            btnSave.Click += BtnSave_Click;
+            btnCancel.Click += BtnCancel_Click;
+            txtBerat.TextChanged += TxtBerat_TextChanged;
 
-            MuatData();
+            this.Load += (s, e) =>
+            {
+                MuatData();
+                MessageBox.Show(
+                    $"idPetani: {_idPetani}\n" +
+                    $"Jumlah data panen ditemukan: {comboBox1.Items.Count}\n" +
+                    $"txtBerat.ReadOnly: {txtBerat.ReadOnly}\n" +
+                    $"txtBerat.Enabled: {txtBerat.Enabled}\n" +
+                    $"cbBuah.Enabled: {cbBuah.Enabled}");
+            };
         }
 
-        public override string GetJudulForm()
-        {
-            return "Ubah Panen";
-        }
+        public override string GetJudulForm() => "Ubah Panen";
 
         public override void MuatData()
         {
-            try
+            _sedangMemuatData = true;
+
+            var listPanen = _controller.GetPanenByPetani(_idPetani);
+
+            var dataTampil = listPanen.Select(p => new
             {
-                sedangMemuatData = true;
+                IdPanen = p.IdPanen,
+                Label = $"Panen #{p.IdPanen} - {p.TanggalPanen:dd-MM-yyyy} ({p.IdBuahNavigation?.NamaBuah})"
+            }).ToList();
 
-                var dt = panenController.AmbilDaftarPanenUntukComboBox();
+            comboBox1.DataSource = dataTampil;
+            comboBox1.DisplayMember = "Label";
+            comboBox1.ValueMember = "IdPanen";
+            comboBox1.SelectedIndex = -1;
 
-                // Urutan WAJIB seperti ini: DataSource dulu, baru DisplayMember/ValueMember.
-                // Kalau dibalik, SelectedValue akan mengembalikan DataRowView mentah,
-                // bukan nilai kolom id_panen -> menyebabkan InvalidCastException.
-                comboBox1.DataSource = null;
-                comboBox1.Items.Clear();
-                comboBox1.DataSource = dt;
-                comboBox1.DisplayMember = "label_panen";
-                comboBox1.ValueMember = "id_panen";
-                comboBox1.SelectedIndex = -1;
-
-                sedangMemuatData = false;
-            }
-            catch (Exception ex)
-            {
-                sedangMemuatData = false;
-                MessageBox.Show("Gagal memuat data panen: " + ex.Message);
-            }
-
+            _sedangMemuatData = false;
             KosongkanForm();
         }
 
-        // ---- Pilihan ComboBox berubah -> isi field-field di bawah ----
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sedangMemuatData) return;
-            if (comboBox1.SelectedIndex == -1) return;
+            if (_sedangMemuatData) return;
             if (comboBox1.SelectedValue == null) return;
-            if (!(comboBox1.SelectedValue is int)) return;
 
-            idPanenDipilih = (int)comboBox1.SelectedValue;
+            _idPanenDipilih = Convert.ToInt32(comboBox1.SelectedValue);
 
-            try
-            {
-                var detail = panenController.AmbilDetailPanen(idPanenDipilih);
-                if (detail == null)
-                {
-                    MessageBox.Show("Data panen tidak ditemukan.");
-                    return;
-                }
+            var panen = _controller.GetById(_idPanenDipilih);
+            if (panen == null) return;
 
-                cbBuah.Text = detail.NamaBuah;
-                cbKebun.Text = detail.NamaKebun;
-                dtpTanggalPanen.Value = detail.TanggalPanen;
-                txtBerat.Text = detail.BeratKg.ToString();
-
-                hargaPerKgBuahTerpilih = detail.HargaPerKg;
-                txtHarga.Text = (detail.BeratKg * hargaPerKgBuahTerpilih).ToString("N2");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Gagal mengambil detail panen: " + ex.Message);
-            }
+            cbBuah.Text = panen.IdBuahNavigation?.NamaBuah ?? "-";
+            cbKebun.Text = panen.IdKebunNavigation?.NamaKebun ?? "-";
+            dtpTanggalPanen.Value = panen.TanggalPanen.ToDateTime(TimeOnly.MinValue);
+            txtBerat.Text = panen.BeratKg.ToString();
+            txtHarga.Text = panen.EstimasiPendapatan?.ToString("N2") ?? "0";
         }
 
-        // ---- Saat berat diketik ulang, hitung ulang estimasi pendapatan ----
-        private void txtBerat_TextChanged(object sender, EventArgs e)
+        private void TxtBerat_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtBerat.Text, out decimal beratBaru))
-            {
-                txtHarga.Text = (beratBaru * hargaPerKgBuahTerpilih).ToString("N2");
-            }
+            // estimasi otomatis dihitung ulang di controller saat save,
+            // di sini cuma preview kalau mau ditambahkan nanti
         }
 
-        // ===== BUTTON SAVE =====
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (idPanenDipilih == 0)
+            if (_idPanenDipilih == 0)
             {
-                MessageBox.Show("Pilih data panen terlebih dahulu!");
+                MessageBox.Show("Pilih data panen terlebih dahulu!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!decimal.TryParse(txtBerat.Text, out decimal beratBaru))
             {
-                MessageBox.Show("Berat (kg) harus berupa angka.");
+                MessageBox.Show("Berat (kg) harus berupa angka!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            decimal estimasiBaru = beratBaru * hargaPerKgBuahTerpilih;
-
             try
             {
-                panenController.UbahDataPanen(
-                    idPanenDipilih,
-                    dtpTanggalPanen.Value,
-                    beratBaru,
-                    estimasiBaru);
+                var tanggal = DateOnly.FromDateTime(dtpTanggalPanen.Value);
+                _controller.UbahPanen(_idPanenDipilih, tanggal, beratBaru);
 
-                MessageBox.Show(
-                    "Data panen berhasil diubah!",
-                    "Informasi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                MessageBox.Show("Data panen berhasil diubah!", "Sukses",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 MuatData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal menyimpan perubahan: " + ex.Message);
+                MessageBox.Show("Gagal menyimpan: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // ===== BUTTON CANCEL =====
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             KosongkanForm();
         }
@@ -165,8 +129,7 @@ namespace Projek_PBO.Views
             txtBerat.Clear();
             txtHarga.Clear();
             dtpTanggalPanen.Value = DateTime.Now;
-            idPanenDipilih = 0;
-            hargaPerKgBuahTerpilih = 0;
+            _idPanenDipilih = 0;
         }
 
         private void label1_Click(object sender, EventArgs e) { }

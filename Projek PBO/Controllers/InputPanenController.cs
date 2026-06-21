@@ -33,6 +33,14 @@ namespace Projek_PBO.Controllers
                 BeratKg = beratKg,
                 EstimasiPendapatan = estimasi
             });
+
+     
+            var buah = _db.Buahs.Find(idBuah);
+            if (buah != null)
+            {
+                buah.Stock += (int)beratKg;
+            }
+
             _db.SaveChanges();
         }
     }

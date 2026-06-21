@@ -31,6 +31,8 @@
             // lblNamaBuah
             // 
             lblNamaBuah.AutoSize = true;
+            lblNamaBuah.BackColor = Color.Transparent;
+            lblNamaBuah.ForeColor = SystemColors.ControlLight;
             lblNamaBuah.Location = new Point(130, 108);
             lblNamaBuah.Margin = new Padding(2, 0, 2, 0);
             lblNamaBuah.Name = "lblNamaBuah";
@@ -42,6 +44,7 @@
             // lblHarga
             // 
             lblHarga.AutoSize = true;
+            lblHarga.ForeColor = SystemColors.ControlLight;
             lblHarga.Location = new Point(130, 184);
             lblHarga.Margin = new Padding(2, 0, 2, 0);
             lblHarga.Name = "lblHarga";
@@ -52,6 +55,7 @@
             // lblSatuan
             // 
             lblSatuan.AutoSize = true;
+            lblSatuan.ForeColor = SystemColors.ControlLight;
             lblSatuan.Location = new Point(417, 108);
             lblSatuan.Margin = new Padding(2, 0, 2, 0);
             lblSatuan.Name = "lblSatuan";
@@ -62,7 +66,7 @@
             // txtSatuan
             // 
             txtSatuan.Location = new Point(417, 142);
-            txtSatuan.Margin = new Padding(2, 2, 2, 2);
+            txtSatuan.Margin = new Padding(2);
             txtSatuan.Name = "txtSatuan";
             txtSatuan.Size = new Size(198, 27);
             txtSatuan.TabIndex = 4;
@@ -70,7 +74,7 @@
             // txtNamaBuah
             // 
             txtNamaBuah.Location = new Point(130, 142);
-            txtNamaBuah.Margin = new Padding(2, 2, 2, 2);
+            txtNamaBuah.Margin = new Padding(2);
             txtNamaBuah.Name = "txtNamaBuah";
             txtNamaBuah.Size = new Size(198, 27);
             txtNamaBuah.TabIndex = 5;
@@ -78,7 +82,7 @@
             // txtHarga
             // 
             txtHarga.Location = new Point(130, 222);
-            txtHarga.Margin = new Padding(2, 2, 2, 2);
+            txtHarga.Margin = new Padding(2);
             txtHarga.Name = "txtHarga";
             txtHarga.Size = new Size(198, 27);
             txtHarga.TabIndex = 6;
@@ -88,7 +92,7 @@
             btnTambah.BackColor = Color.Lime;
             btnTambah.ForeColor = Color.Red;
             btnTambah.Location = new Point(644, 222);
-            btnTambah.Margin = new Padding(2, 2, 2, 2);
+            btnTambah.Margin = new Padding(2);
             btnTambah.Name = "btnTambah";
             btnTambah.Size = new Size(90, 27);
             btnTambah.TabIndex = 7;
@@ -100,7 +104,7 @@
             dgvBuah.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBuah.Columns.AddRange(new DataGridViewColumn[] { colId, colNama, ColSatuan, ColHarga });
             dgvBuah.Location = new Point(116, 286);
-            dgvBuah.Margin = new Padding(2, 2, 2, 2);
+            dgvBuah.Margin = new Padding(2);
             dgvBuah.Name = "dgvBuah";
             dgvBuah.RowHeadersWidth = 62;
             dgvBuah.Size = new Size(652, 180);
@@ -146,7 +150,7 @@
             Controls.Add(lblSatuan);
             Controls.Add(lblHarga);
             Controls.Add(lblNamaBuah);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "KelolaBuah";
             ((System.ComponentModel.ISupportInitialize)dgvBuah).EndInit();
             ResumeLayout(false);
