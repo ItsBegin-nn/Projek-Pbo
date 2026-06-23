@@ -25,17 +25,6 @@ namespace Projek_PBO.Views
             btnSave.Click += BtnSave_Click;
             btnCancel.Click += BtnCancel_Click;
             txtBerat.TextChanged += TxtBerat_TextChanged;
-
-            this.Load += (s, e) =>
-            {
-                MuatData();
-                MessageBox.Show(
-                    $"idPetani: {_idPetani}\n" +
-                    $"Jumlah data panen ditemukan: {comboBox1.Items.Count}\n" +
-                    $"txtBerat.ReadOnly: {txtBerat.ReadOnly}\n" +
-                    $"txtBerat.Enabled: {txtBerat.Enabled}\n" +
-                    $"cbBuah.Enabled: {cbBuah.Enabled}");
-            };
         }
 
         public override string GetJudulForm() => "Ubah Panen";
